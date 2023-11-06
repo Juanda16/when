@@ -4,7 +4,6 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -14,10 +13,10 @@ import org.springframework.stereotype.Service;
 import com.when.holidays.entities.Holiday;
 import com.when.holidays.repositories.IHolidaysRepository;
 
+import jakarta.transaction.Transactional;
 
 @Service
-public class HolidaysService  {
-
+public class HolidaysService {
 
     @Autowired
     IHolidaysRepository repositorio;
@@ -112,14 +111,13 @@ public class HolidaysService  {
         return festivos;
     }
 
-   
     public List<Holiday> obtenerFestivos(int año) {
         List<Holiday> festivos = repositorio.findAll();
         festivos = calcularFestivos(festivos, año);
         return festivos;
         // List<FestivoDto> fechas = new ArrayList<FestivoDto>();
         // for (final Holiday festivo : festivos) {
-        //     fechas.add(new FestivoDto(festivo.getNombre(), festivo.getDate()));
+        // fechas.add(new FestivoDto(festivo.getNombre(), festivo.getDate()));
         // }
         // return fechas;
     }
@@ -144,12 +142,12 @@ public class HolidaysService  {
         return false;
     }
 
-
     public boolean esFestivo(Date fecha) {
+
         List<Holiday> festivos = repositorio.findAll();
+
         return esFestivo(festivos, fecha);
     }
-
 
     public boolean esFechaValida(String strFecha) {
         try {

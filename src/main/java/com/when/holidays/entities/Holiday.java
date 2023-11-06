@@ -11,26 +11,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "festivo")
 public class Holiday {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "secuencia_festivo")
     @GenericGenerator(name = "secuencia_festivo", strategy = "increment")
     @Column(name = "id")
     private int id;
-    
-    @Column(name = "day")
+
+    @Column(name = "dia")
     private int day;
 
-    @Column(name = "month")
+    @Column(name = "mes")
     private int month;
 
-    @Column(name = "name", length = 100)
+    @Column(name = "nombre", length = 100)
     private String name;
 
-    @Column(name = "easterDay")
+    @Column(name = "diaspascua")
     private int easterDay;
 
     @ManyToOne
@@ -92,11 +94,11 @@ public class Holiday {
     }
 
     public HolidayType getType() {
-        return type;
+    return type;
     }
 
     public void setType(HolidayType type) {
-        this.type = type;
+    this.type = type;
     }
 
     public Date getDate() {
@@ -107,5 +109,4 @@ public class Holiday {
         this.date = date;
     }
 
-    
 }
