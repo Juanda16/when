@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import com.when.holidays.entities.Holiday;
 import com.when.holidays.repositories.IHolidaysRepository;
 
-import jakarta.transaction.Transactional;
-
 @Service
 public class HolidaysService {
 
